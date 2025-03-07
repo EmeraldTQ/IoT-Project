@@ -1,0 +1,26 @@
+IoT-Based Cow Health Monitoring Using Deep Learning
+This notebook presents the development of a deep learning-based classification model for monitoring cow health and behavior using IoT sensor data. The goal is to predict whether a cow is ruminating or not based on accelerometer (Ax, Ay, Az) and gyroscope (Gx, Gy, Gz) readings collected from wearable sensors.
+
+A PyTorch-based Artificial Neural Network (ANN) was implemented to analyze sensor readings and classify cow movements. The model was trained using Binary Cross-Entropy Loss (BCELoss) and optimized using AdamW. Various data preprocessing, feature engineering, and model optimization techniques were applied to improve performance.
+
+Despite extensive tuning, the model did not achieve high accuracy, and this notebook analyzes the possible reasons behind it while suggesting improvements.
+
+Why is the Accuracy Low? 
+
+Despite improvements, the model's accuracy remains suboptimal, and several key factors contribute to this issue:
+
+1. The dataset has more non-ruminating movements than ruminating ones.
+The model leans toward predicting the majority class, leading to low precision for ruminating cows.
+Fix Attempted: Used SMOTE to address class imbalance, but further tuning is needed.
+
+2. Overlapping Sensor Data
+Some movements (e.g., standing vs. ruminating) have similar sensor readings.
+The model struggles to differentiate between them, leading to misclassifications.
+
+3. Learning Rate Might Be Too Low  (lr = 0.0005)
+A very small learning rate causes slow weight updates, leading to slow improvement in loss.
+Fix Attempted: Increasing lr=0.001 could help the model converge faster.
+
+4. Limited Model Complexity
+The model might lack the complexity needed to capture hidden patterns in sensor data.
+Fix Attempted: Increasing neurons/layers improved performance slightly, but more feature engineering may be required.
